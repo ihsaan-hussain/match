@@ -1,6 +1,7 @@
 from tkinter import *
 #import xlsxwriter
 import openpyxl
+import os
 
 root = Tk()
 root.title("Match report")
@@ -26,20 +27,11 @@ class App:
         self.add_button = Button(team_labelframe, text="Add to spreadsheet", font=("Helvetica", 16), command=self.add)
         self.add_button.grid(row=2, column=0, ipadx=150, padx=10, pady=10, columnspan=3)
 
+        self.open_excel_file = Button(team_labelframe, text="Open spreadsheet", font=("Helvetica", 16), command=self.open_file)
+        self.open_excel_file.grid(row=3, column=0, ipadx=150, padx=10, pady=10, columnspan=3)
+
     def add(self):
         try:
-            '''
-            workbook = xlsxwriter.Workbook('hello.xlsx')
-            worksheet = workbook.add_worksheet()
-
-            worksheet.write('A1', 'Red Team')
-            worksheet.write('B1', 'Yellow Team')
-            worksheet.write('A2', self.red_goal_entry.get())
-            worksheet.write('B2', self.yellow_goal_entry.get())
-
-            workbook.close()
-            '''
-
             workbook = openpyxl.Workbook()
             # Get the active sheet
             sheet = workbook.active
@@ -49,9 +41,15 @@ class App:
             sheet['A2'] = self.red_goal_entry.get()
             sheet['B2'] = self.yellow_goal_entry.get()
 
-            workbook.save('hello.xlsx')
+            workbook.save('C:\\Users\\ijhus\\OneDrive\\Desktop\\hello.xlsx')
+
+            self.red_goal_entry.delete(0,END)
+            self.yellow_goal_entry.delete(0,END)
         except:
-            print("error")
+            print("error could not write")
+
+    def open_file(self):
+        os.system('start "excel" "C:\\Users\\ijhus\\OneDrive\\Desktop\\hello.xlsx"')
 
 a = App(root)
 
