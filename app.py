@@ -142,6 +142,8 @@ class App:
         self.yellow_player_entry.delete(0,END)
         self.goals_entry.delete(0,END)
         self.goals_entry2.delete(0,END)
+        self.assists_entry.delete(0,END)
+        self.assists_entry2.delete(0,END)
 
 a = App(root)
 
