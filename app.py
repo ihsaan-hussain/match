@@ -1,6 +1,7 @@
 from tkinter import *
 import openpyxl
 from openpyxl.worksheet.table import Table, TableStyleInfo
+from openpyxl.utils import get_column_letter
 from openpyxl.styles import PatternFill
 import os
 
@@ -84,24 +85,32 @@ class App:
     def add(self):
         workbook = openpyxl.Workbook()
         sheet = workbook.active
-
+        '''
         sheet['A1'] = 'Red Team'
         sheet['B1'] = 'Yellow team'
         sheet['A2'] = self.red_goal_entry.get()
         sheet['B2'] = self.yellow_goal_entry.get()
         sheet['B3'] = '\n'
+        '''
+
+        self.red_players = []
+
+        for i in red_player_list:
+            for j in i:
+                pass
 
 
-        for row in red_player_list:
-            sheet.append(row)
+        table = Table(displayName="Table1", ref="A1:" + get_column_letter(sheet.max_column) + str(sheet.max_row))
 
-        for row in yellow_player_list:
-            sheet.append(row)
+        sheet.add_table(table)
 
         workbook.save('C:\\Users\\ijhus\\OneDrive\\Desktop\\hello.xlsx')
 
         self.red_goal_entry.delete(0,END)
         self.yellow_goal_entry.delete(0,END)
+
+        self.player_text.delete(0.0,END)
+        self.player_text2.delete(0.0,END)
 
     def open_file(self):
         os.system('start "excel" "C:\\Users\\ijhus\\OneDrive\\Desktop\\hello.xlsx"')
