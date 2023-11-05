@@ -1,5 +1,6 @@
 from tkinter import *
 from tkinter import ttk
+from tkinter import filedialog
 import openpyxl
 import xlsxwriter
 import os
@@ -147,21 +148,7 @@ class App:
         pass
 
     def createspreadsheet(self):
-        self.filename = ""
-
-        self.newwin = Tk()
-        self.newwin.config(bg='light blue')
-
-        self.filenamelab = Label(self.newwin, text="Filename: ",font=("Helvetica",20),bg="light blue")
-        self.filenamelab.grid(row=0,column=0,padx=10,pady=10)
-
-        self.fileinput = Entry(self.newwin, font=("Helvetica",20), bd=5)
-        self.fileinput.grid(row=0,column=1,padx=10,pady=10)
-
-        self.save_button = Button(self.newwin, font=("Helvetica",20),bd=5,text="Confirm", command=lambda: self.get(self.filename))
-        self.save_button.grid(row=0,column=2)
-
-        self.newwin.mainloop()
+        self.file = filedialog.asksaveasfile(title="Open a File", filetype=(("xlsx files", ".*xlsx"),("All Files", "*.")))
 
     def addinfo(self):
         pass
