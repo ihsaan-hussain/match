@@ -59,7 +59,7 @@ class App:
         self.current_file_label = Label(scorelabelframe, bg="light blue", font=("Helvetica", 15, 'bold'), text="Current file: ")
         self.current_file_label.grid(row=0, column=5, padx=10, pady=10)
 
-        self.current_entry = Entry(scorelabelframe, bd=5, font=("Helvetica", 20, 'bold'))
+        self.current_entry = Entry(scorelabelframe, bd=5, font=("Helvetica", 20, 'bold'), state="disabled")
         self.current_entry.grid(row=0,column=6,padx=10,pady=10)
 
         self.selected = StringVar()
@@ -145,7 +145,13 @@ class App:
         pass
 
     def openspreadsheet(self):
-        pass
+        if self.current_entry.get() == '':
+            self.openfile = filedialog.askopenfile(title="open excel spreadsheet", filetype=(("xlsx files", ".xlsx"),("All Files", ".")))
+            self.current_entry.config(state="normal")
+            self.current_entry.insert(END,self.openfile.name)
+            self.current_entry.config(state="disabled")
+        else:
+            os.system(f'start "excel" {self.current_entry.get()}')
 
     def createspreadsheet(self):
         self.file = filedialog.asksaveasfile(title="Open a File", filetype=(("xlsx files", ".*xlsx"),("All Files", "*.")))
