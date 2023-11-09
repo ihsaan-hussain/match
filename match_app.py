@@ -36,7 +36,10 @@ class App:
         extrainfos_frame.pack(padx=10,pady=10,fill=X)
 
         buttonlabelframe = LabelFrame(scoresframe, text="Buttons", bd=5, font=("Helvetica", 20, 'bold'),bg="light blue")
-        buttonlabelframe.pack(padx=10,pady=10,fill=X)        
+        buttonlabelframe.pack(padx=10,pady=10,fill=X)
+
+        self.red_player_list = []
+        self.yellow_player_list = []       
 
         self.title = Label(topframe,text="Match Report", font=("Helvetica", 28, 'bold'),bg="light blue")
         self.title.pack(padx=10,pady=10)
@@ -154,7 +157,7 @@ class App:
             os.system(f'start "excel" {self.current_entry.get()}')
 
     def createspreadsheet(self):
-        self.file = filedialog.asksaveasfile(title="Open a File", filetype=(("xlsx files", ".*xlsx"),("All Files", "*.")))
+        self.file = filedialog.asksaveasfile(title="Make an excel file", filetype=(("xlsx files", ".*xlsx"),("All Files", "*.")))
 
     def addinfo(self):
         pass
@@ -171,14 +174,15 @@ class App:
         self.player_assists_entry.delete(0,END)
 
     def addplayer(self):
-        pass
+        if self.selected.get() == "Red Team":
+            self.red_player_list.append(self.player_entry.get())
+        else:
+            self.yellow_player_list.append(self.player_entry.get())
+        print(self.red_player_list)
+        print(self.yellow_player_list)
 
     def savescore(self):
         pass 
-
-    def get(self, x):
-        x = self.fileinput.get()
-        self.newwin.destroy()
 
 a = App(root)
 
