@@ -38,8 +38,8 @@ class App:
         buttonlabelframe = LabelFrame(scoresframe, text="Buttons", bd=5, font=("Helvetica", 20, 'bold'),bg="light blue")
         buttonlabelframe.pack(padx=10,pady=10,fill=X)
 
-        self.red_player_list = []
-        self.yellow_player_list = []       
+        self.red_player_dictionary = {}
+        self.yellow_player_dictionary = {}
 
         self.title = Label(topframe,text="Match Report", font=("Helvetica", 28, 'bold'),bg="light blue")
         self.title.pack(padx=10,pady=10)
@@ -142,7 +142,11 @@ class App:
         self.see_players.grid(row=0, column=3, padx=30, pady=10)
 
     def seeplayers(self):
-        pass
+        for self.player in self.red_player_dictionary:
+            print(self.player)
+
+        for self.player in self.yellow_player_dictionary:
+            print(self.player)
 
     def addspreadsheet(self):
         pass
@@ -153,6 +157,7 @@ class App:
             self.current_entry.config(state="normal")
             self.current_entry.insert(END,self.openfile.name)
             self.current_entry.config(state="disabled")
+            os.system(f'start "excel" {self.current_entry.get()}')
         else:
             os.system(f'start "excel" {self.current_entry.get()}')
 
@@ -175,11 +180,18 @@ class App:
 
     def addplayer(self):
         if self.selected.get() == "Red Team":
-            self.red_player_list.append(self.player_entry.get())
+            self.red_player_dictionary.update({str(self.player_entry.get()):[f'G: {str(self.player_goals_entry.get())}', f'A: {str(self.player_assists_entry.get())}']})
+            self.player_entry.delete(0,END)
+            self.player_goals_entry.delete(0,END)
+            self.player_assists_entry.delete(0,END)        
         else:
-            self.yellow_player_list.append(self.player_entry.get())
-        print(self.red_player_list)
-        print(self.yellow_player_list)
+            self.yellow_player_dictionary.update({str(self.player_entry.get()):[f'G: {str(self.player_goals_entry.get())}', f'A: {str(self.player_assists_entry.get())}']})
+            self.player_entry.delete(0,END)
+            self.player_goals_entry.delete(0,END)
+            self.player_assists_entry.delete(0,END)
+
+        print(self.red_player_dictionary)
+        print(self.yellow_player_dictionary)
 
     def savescore(self):
         pass 
