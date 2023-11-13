@@ -1,8 +1,8 @@
 from tkinter import *
 from tkinter import ttk
 from tkinter import filedialog
+import datetime
 import openpyxl
-import xlsxwriter
 import os
 
 root = Tk()
@@ -40,6 +40,8 @@ class App:
 
         self.red_player_dictionary = {}
         self.yellow_player_dictionary = {}
+        self.extrainfo = []
+        self.scorelist = []
 
         self.title = Label(topframe,text="Match Report", font=("Helvetica", 28, 'bold'),bg="light blue")
         self.title.pack(padx=10,pady=10)
@@ -142,14 +144,25 @@ class App:
         self.see_players.grid(row=0, column=3, padx=30, pady=10)
 
     def seeplayers(self):
-        for self.player in self.red_player_dictionary:
-            print(self.player)
+        self.new = Tk()
+        self.text_box1 = Text(self.new, font=("Helvetica", 16), height=10, width=30)
+        self.text_box1.grid(row=0,column=0)
+        self.text_box2 = Text(self.new, font=("Helvetica", 16), height=10, width=30)
+        self.text_box2.grid(row=0, column=1)
 
-        for self.player in self.yellow_player_dictionary:
-            print(self.player)
+        for player in self.red_player_dictionary:
+            self.text_box1.insert(0.0,player+"\n")
+
+        for player in self.yellow_player_dictionary:
+            self.text_box2.insert(0.0,player+"\n")
 
     def addspreadsheet(self):
-        pass
+        self.workbook = openpyxl.Workbook()
+        self.sheet = self.workbook.active
+
+        self.sheet["A1"] = f"Match Report - Petchey Football {datetime.datetime.now()}"
+
+        self.workbook.save(filename=self.current_entry.get())
 
     def openspreadsheet(self):
         if self.current_entry.get() == '':
@@ -165,7 +178,15 @@ class App:
         self.file = filedialog.asksaveasfile(title="Make an excel file", filetype=(("xlsx files", ".*xlsx"),("All Files", "*.")))
 
     def addinfo(self):
-        pass
+        self.motm = self.motm_entry.get()
+        self.top_scorer = self.topscorer_entry.get()
+        self.possesion_red = self.possesion_entry.get()
+        self.possesion_yellow = self.possesion2_entry.get()
+
+        self.extrainfo.append(self.motm)
+        self.extrainfo.append(self.top_scorer)
+        self.extrainfo.append(self.possesion_red)
+        self.extrainfo.append(self.possesion_yellow)
 
     def clearinfo(self):
         self.motm_entry.delete(0,END)
@@ -190,11 +211,12 @@ class App:
             self.player_goals_entry.delete(0,END)
             self.player_assists_entry.delete(0,END)
 
-        print(self.red_player_dictionary)
-        print(self.yellow_player_dictionary)
-
     def savescore(self):
-        pass 
+        self.red_score = self.red_score_entry.get()
+        self.yellow_score = self.yellow_score_entry.get()
+
+        self.scorelist.append(self.red_score)
+        self.scorelist.append(self.yellow_score)
 
 a = App(root)
 
