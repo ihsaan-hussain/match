@@ -1,7 +1,7 @@
 from tkinter import *
 from tkinter import ttk
 from tkinter import filedialog
-import datetime
+from datetime import datetime
 import openpyxl
 import os
 
@@ -160,7 +160,19 @@ class App:
         self.workbook = openpyxl.Workbook()
         self.sheet = self.workbook.active
 
-        self.sheet["A1"] = f"Match Report - Petchey Football {datetime.datetime.now()}"
+        self.sheet["A1"] = f"Match Report - Petchey Football {datetime.today().strftime('%Y-%m-%d')}"
+
+        self.players = []
+
+        self.sheet.append(["Red", "Yellow"])
+
+        for x in self.red_player_dictionary.keys(), self.yellow_player_dictionary.keys():
+            self.players.append(list(x))
+            
+        print(self.players)
+
+        for row in self.players:
+            self.sheet.append(row)
 
         self.workbook.save(filename=self.current_entry.get())
 
