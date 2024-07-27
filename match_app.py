@@ -2,6 +2,7 @@
 import tkinter as tk
 from tkinter import ttk, messagebox
 import pandas as pd
+import customtkinter
 
 # App object
 class MatchReportApp:
@@ -14,66 +15,66 @@ class MatchReportApp:
 
     def create_widgets(self):
         # Team 1 (RED)
-        ttk.Label(self.root, text="Team 1 Name:").grid(column=0, row=0, sticky=tk.W)
-        self.team1_name = ttk.Entry(self.root)
+        customtkinter.CTkLabel(self.root, text="Team 1 Name:").grid(column=0, row=0, sticky=tk.W)
+        self.team1_name = customtkinter.CTkEntry(self.root)
         self.team1_name.grid(column=1, row=0, sticky=tk.W)
         self.team1_name.insert(0, 'Red')
-        self.team1_name.config(state=tk.DISABLED)
+        self.team1_name.configure(state=tk.DISABLED)
 
-        ttk.Label(self.root, text="Red Team Score:").grid(column=0, row=1, sticky=tk.W)
-        self.team1_score = ttk.Entry(self.root)
+        customtkinter.CTkLabel(self.root, text="Red Team Score:").grid(column=0, row=1, sticky=tk.W)
+        self.team1_score = customtkinter.CTkEntry(self.root)
         self.team1_score.grid(column=1, row=1, sticky=tk.W)
 
-        ttk.Label(self.root, text="Red Possession (%):").grid(column=0, row=2, sticky=tk.W)
-        self.team1_possession = ttk.Entry(self.root)
+        customtkinter.CTkLabel(self.root, text="Red Possession (%):").grid(column=0, row=2, sticky=tk.W)
+        self.team1_possession = customtkinter.CTkEntry(self.root)
         self.team1_possession.grid(column=1, row=2, sticky=tk.W)
 
-        ttk.Label(self.root, text="Red Team Lineup (comma-separated):").grid(column=0, row=3, sticky=tk.W)
-        self.team1_lineup = ttk.Entry(self.root)
+        customtkinter.CTkLabel(self.root, text="Red Team Lineup (comma-separated):").grid(column=0, row=3, sticky=tk.W)
+        self.team1_lineup = customtkinter.CTkEntry(self.root)
         self.team1_lineup.grid(column=1, row=3, sticky=tk.W)
 
-        ttk.Label(self.root, text="Red Team Goals (comma-separated):").grid(column=0, row=4, sticky=tk.W)
-        self.team1_goals = ttk.Entry(self.root)
+        customtkinter.CTkLabel(self.root, text="Red Team Goals (comma-separated):").grid(column=0, row=4, sticky=tk.W)
+        self.team1_goals = customtkinter.CTkEntry(self.root)
         self.team1_goals.grid(column=1, row=4, sticky=tk.W)
 
-        ttk.Label(self.root, text="Red Team Assists (comma-separated):").grid(column=0, row=5, sticky=tk.W)
-        self.team1_assists = ttk.Entry(self.root)
+        customtkinter.CTkLabel(self.root, text="Red Team Assists (comma-separated):").grid(column=0, row=5, sticky=tk.W)
+        self.team1_assists = customtkinter.CTkEntry(self.root)
         self.team1_assists.grid(column=1, row=5, sticky=tk.W)
 
         # Team 2 (YELLOW)
-        ttk.Label(self.root, text="Team 2 Name:").grid(column=0, row=6, sticky=tk.W)
-        self.team2_name = ttk.Entry(self.root)
+        customtkinter.CTkLabel(self.root, text="Team 2 Name:").grid(column=0, row=6, sticky=tk.W)
+        self.team2_name = customtkinter.CTkEntry(self.root)
         self.team2_name.grid(column=1, row=6, sticky=tk.W)
         self.team2_name.insert(0, 'Yellow')
-        self.team2_name.config(state=tk.DISABLED)
+        self.team2_name.configure(state=tk.DISABLED)
 
-        ttk.Label(self.root, text="Yellow Score:").grid(column=0, row=7, sticky=tk.W)
-        self.team2_score = ttk.Entry(self.root)
+        customtkinter.CTkLabel(self.root, text="Yellow Score:").grid(column=0, row=7, sticky=tk.W)
+        self.team2_score = customtkinter.CTkEntry(self.root)
         self.team2_score.grid(column=1, row=7, sticky=tk.W)
 
-        ttk.Label(self.root, text="Yellow Possession (%):").grid(column=0, row=8, sticky=tk.W)
-        self.team2_possession = ttk.Entry(self.root)
+        customtkinter.CTkLabel(self.root, text="Yellow Possession (%):").grid(column=0, row=8, sticky=tk.W)
+        self.team2_possession = customtkinter.CTkEntry(self.root)
         self.team2_possession.grid(column=1, row=8, sticky=tk.W)
 
-        ttk.Label(self.root, text="Yellow Lineup (comma-separated):").grid(column=0, row=9, sticky=tk.W)
-        self.team2_lineup = ttk.Entry(self.root)
+        customtkinter.CTkLabel(self.root, text="Yellow Lineup (comma-separated):").grid(column=0, row=9, sticky=tk.W)
+        self.team2_lineup = customtkinter.CTkEntry(self.root)
         self.team2_lineup.grid(column=1, row=9, sticky=tk.W)
 
-        ttk.Label(self.root, text="Yellow Goals (comma-separated):").grid(column=0, row=10, sticky=tk.W)
-        self.team2_goals = ttk.Entry(self.root)
+        customtkinter.CTkLabel(self.root, text="Yellow Goals (comma-separated):").grid(column=0, row=10, sticky=tk.W)
+        self.team2_goals = customtkinter.CTkEntry(self.root)
         self.team2_goals.grid(column=1, row=10, sticky=tk.W)
 
-        ttk.Label(self.root, text="Yellow Assists (comma-separated):").grid(column=0, row=11, sticky=tk.W)
-        self.team2_assists = ttk.Entry(self.root)
+        customtkinter.CTkLabel(self.root, text="Yellow Assists (comma-separated):").grid(column=0, row=11, sticky=tk.W)
+        self.team2_assists = customtkinter.CTkEntry(self.root)
         self.team2_assists.grid(column=1, row=11, sticky=tk.W)
 
         # Man of the Match
-        ttk.Label(self.root, text="Man of the Match:").grid(column=0, row=12, sticky=tk.W)
-        self.man_of_the_match = ttk.Entry(self.root)
+        customtkinter.CTkLabel(self.root, text="Man of the Match:").grid(column=0, row=12, sticky=tk.W)
+        self.man_of_the_match = customtkinter.CTkEntry(self.root)
         self.man_of_the_match.grid(column=1, row=12, sticky=tk.W)
 
         # Generate Report Button
-        self.generate_button = ttk.Button(self.root, text="Generate Report", command=self.generate_report)
+        self.generate_button = customtkinter.CTkButton(self.root, text="Generate Report", command=self.generate_report)
         self.generate_button.grid(column=0, row=13, columnspan=2, pady=10)
 
     # Create the Excel file
@@ -129,6 +130,7 @@ class MatchReportApp:
             messagebox.showerror("Permission Denied", "PermissionError: [Errno 13] Permission denied: 'football_match_report.xlsx'")
 
 if __name__ == "__main__":
-    root = tk.Tk()
+    customtkinter.set_appearance_mode("Dark")
+    root = customtkinter.CTk()
     app = MatchReportApp(root)
     root.mainloop()
